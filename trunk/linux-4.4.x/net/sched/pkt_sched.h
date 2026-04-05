@@ -63,7 +63,6 @@ struct tc_estimator {
     Macros to manipulate handles:
  */
 
-
 #define TC_H_MAJ_MASK (0xFFFF0000U)
 #define TC_H_MIN_MASK (0x0000FFFFU)
 #define TC_H_MAJ(h) ((h)&TC_H_MAJ_MASK)
@@ -187,7 +186,6 @@ enum {
 
 #define TCA_TBF_MAX (__TCA_TBF_MAX - 1)
 
-
 /* TEQL section */
 
 /* TEQL does not require any parameters */
@@ -227,7 +225,6 @@ struct tc_sfq_qopt_v1 {
 /* SFQRED stats */
 	struct tc_sfqred_stats stats;
 };
-
 
 struct tc_sfq_xstats {
 	__s32		allot;
@@ -412,7 +409,6 @@ enum {
 };
 
 #define TCA_HFSC_MAX (__TCA_HFSC_MAX - 1)
-
 
 /* CBQ section */
 
@@ -695,7 +691,7 @@ enum {
 
 struct tc_codel_xstats {
 	__u32	maxpacket; /* largest packet we've seen so far */
-	__u32	count;	   /* how many drops we've done since the last time we
+	__u32	count;     /* how many drops we've done since the last time we
 			    * entered dropping state
 			    */
 	__u32	lastcount; /* count at entry to dropping state */
@@ -872,7 +868,7 @@ enum {
 	TCA_CAKE_AUTORATE,
 	TCA_CAKE_MEMORY,
 	TCA_CAKE_NAT,
-	TCA_CAKE_RAW, // was _ETHERNET
+	TCA_CAKE_RAW, /* was _ETHERNET */
 	TCA_CAKE_WASH,
 	TCA_CAKE_MPU,
 	TCA_CAKE_INGRESS,

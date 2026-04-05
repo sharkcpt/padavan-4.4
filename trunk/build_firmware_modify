@@ -250,10 +250,25 @@ else
     fi
 fi
 
-# 3. 强行焊死 NFQUEUE 底层网络模块
-func_enable_kernel_param "CONFIG_NETFILTER_NETLINK"
+############################# 核心网络与科学上网模块 #############################
+
+# 基础 Netlink 与连接追踪模块 (编译入内核)
+func_enable_kernel_param "CONFIG_NETFILTER_NETLINK" "y"
+func_enable_kernel_param "CONFIG_NETFILTER_NETLINK_ACCT" "y"
+func_enable_kernel_param "CONFIG_NETFILTER_NETLINK_LOG" "y"
+func_enable_kernel_param "CONFIG_NF_CONNTRACK" "y"
+
+# NFQUEUE 队列与日志 (编译为独立模块 .ko)
+# 注意：务必保持为 "m"，否则老毛子插件会报 "Cannot find xt_NFQUEUE.ko module"
 func_enable_kernel_param "CONFIG_NETFILTER_NETLINK_QUEUE" "m"
 func_enable_kernel_param "CONFIG_NETFILTER_XT_TARGET_NFQUEUE" "m"
+func_enable_kernel_param "CONFIG_NETFILTER_XT_TARGET_NFLOG" "m"
+
+# TPROXY 透明代理与 BPF 匹配模块 (编译为独立模块 .ko)
+func_enable_kernel_param "CONFIG_NETFILTER_XT_TARGET_TPROXY" "m"
+func_enable_kernel_param "CONFIG_NETFILTER_XT_MATCH_SOCKET" "m"
+func_enable_kernel_param "CONFIG_NETFILTER_XT_MATCH_MARK" "m"
+func_enable_kernel_param "CONFIG_NETFILTER_XT_MATCH_BPF" "m"
 
 echo --------------------------MAKE-DEP--------------------------------
 make dep
